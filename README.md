@@ -12,7 +12,7 @@ Fetches RSS feeds and generates a static HTML page with links from the feed.
 
 ### Example feed JSON
 
-```json
+```js
 {
   // The heading for the list of links from this feed
   "name": "HTML & CSS Tip of the Week",
