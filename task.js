@@ -154,10 +154,9 @@ function parseXML(input, feedTitle, feedType) {
     }
   }
 
-  fs.writeFileSync(
-    `debug/raw_feed_${feedTitle.replaceAll(/\s/g, "_")}.txt`,
-    parsedItems.map((i) => JSON.stringify(i)).join("\n")
-  );
+  if (process.env.DEBUG) {
+    generateDebugFile(feedTitle, parsedItems);
+  }
 
   return parsedItems;
 }
@@ -200,4 +199,18 @@ function getItemTitle(item) {
   const titleMatch = item.match(titleMatcher);
 
   return titleMatch[1]?.replaceAll(/\<!\[CDATA\[|\]\]\>/g, "");
+}
+
+/**
+ *  @param {string} feedTitle
+ *  @param {Array<{ title: string; address: string }>} items
+ */
+function generateDebugFile(feedTitle, items) {
+  if (!fs.existsSync("debug")) {
+    fs.mkdirSync("debug");
+  }
+  fs.writeFileSync(
+    `debug/raw_feed_${feedTitle.replaceAll(/\s/g, "_")}.txt`,
+    items.map((i) => JSON.stringify(i)).join("\n")
+  );
 }

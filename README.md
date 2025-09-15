@@ -30,3 +30,10 @@ Fetches RSS feeds and generates a static HTML page with links from the feed.
   }
 ]
 ```
+
+## Debugging
+
+If something isn't working as expected, you can pass a `DEBUG` env variable when running the script to generate text files in a `debug/` directory. These files will contain a list of the links parsed from a feed, and each feed's links will be written to their own file.
+```
+DEBUG=true ./task
+```
