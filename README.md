@@ -4,10 +4,12 @@ Fetches RSS feeds and generates a static HTML page with links from the feed.
 
 ## How to Use
 
+_Requires minimum node v22.7.0_
+
 - Clone this repo
 - Create a `feeds.json` file in the root directory that contains an array of feeds
-- Open your terminal at the root directory and run `./task.js`
-  - You might need to adjust file permissions, e.g. `chmod u+x task.js`
+- Open your terminal at the root directory and run `./main.js`
+  - You might need to adjust file permissions, e.g. `chmod u+x main.js`
 - Open `index.html` in your browser
 
 ### Example feed `feeds.json`
