@@ -1,3 +1,76 @@
+:root {
+  --rss-background: #363e46;
+  --rss-text-primary: #d0cece;
+  --rss-link-color: #ffd27d;
+  --rss-link-color-visited: #d69aff;
+  --rss-highlight-color: #ec7fad;
+}
+
 body {
-  background-color: slategrey;
+  background-color: var(--rss-background);
+  color: var(--rss-text-primary);
+  padding: 20px;
+}
+
+h1,
+h2 {
+  font-size: 1.8rem;
+}
+
+h1,
+h1 ~ p {
+  text-align: center;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+#feed a {
+  color: var(--rss-link-color);
+  text-underline-offset: 0.15lh;
+  border-radius: 4px;
+
+  &:visited {
+    color: var(--rss-link-color-visited);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--rss-highlight-color);
+    outline-offset: 4px;
+  }
+}
+
+.feed {
+  margin-block-start: 2.5lh;
+}
+
+.feed li {
+  margin-block-start: 1.5lh;
+  padding-block-end: 1.5lh;
+  border-block-end: 1px dashed var(--rss-text-primary);
+
+  &:last-of-type {
+    border-block-end: none;
+  }
+
+  > a {
+    font-size: 1.2rem;
+  }
+}
+
+.item-description {
+  margin-block-start: 1lh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8lh;
+}
+
+.item-description img {
+  max-width: 300px;
 }
