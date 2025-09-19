@@ -25,6 +25,7 @@ async function main() {
  * @param {Feed[]} feeds
  */
 async function generateDocument(feeds) {
+  const tableOfContents = createTableOfContents(feeds);
   const parsedFeeds = await parseFeeds(feeds);
   const timestamp = new Date().toLocaleString();
 
@@ -38,14 +39,17 @@ async function generateDocument(feeds) {
       <title>RSS Reader</title>
     </head>
     <body>
-      <main id="main">
+      <main id="main" class="container">
         <h1>RSS Reader</h1>
-        <p>Last updated ${timestamp}</p>
+        <p>Generated ${timestamp}</p>
 
-        <div class="container">
-          <div id="feed">
-            ${parsedFeeds}
-          </div>
+        <nav>
+          <h2>Table of Contents</h2>
+          ${tableOfContents}
+        </nav>
+
+        <div id="feed">
+          ${parsedFeeds}
         </div>
       </main>
     </body>
@@ -88,4 +92,19 @@ async function fetchFeed(url) {
     console.error("an error occurred: ", error);
     return "";
   }
+}
+
+/**
+ * @param {Feed[]} feeds
+ *
+ * @returns {string}
+ */
+function createTableOfContents(feeds) {
+  let result = "";
+
+  feeds.forEach((feed) => {
+    result += `<li><a href="#${feed.name}">${feed.name}</a></li>`;
+  });
+
+  return result;
 }

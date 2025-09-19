@@ -31,6 +31,14 @@ p {
   margin: auto;
 }
 
+nav a {
+  color: var(--rss-link-color);
+}
+
+nav li {
+  margin-block-start: .8lh;
+}
+
 #feed a {
   color: var(--rss-link-color);
   text-underline-offset: 0.15lh;
