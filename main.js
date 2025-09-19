@@ -63,14 +63,18 @@ async function generateDocument(feeds) {
  * @returns {Promise<string>}
  */
 async function parseFeeds(feeds) {
-  let result = "";
+  let parsed = "";
 
-  for (const feed of feeds) {
-    const rawFeed = await fetchFeed(feed.url);
-    result += createFeedList(rawFeed, feed);
-  }
+  const promises = feeds.map((feed) => fetchFeed(feed.url));
+  const results = await Promise.allSettled(promises);
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled") {
+      const feedMatch = feeds[index];
+      parsed += createFeedList(result.value, feedMatch);
+    }
+  });
 
-  return result;
+  return parsed;
 }
 
 /**
