@@ -39,7 +39,7 @@ nav li {
   margin-block-start: .8lh;
 }
 
-#feed a {
+#feeds a {
   color: var(--rss-link-color);
   text-underline-offset: 0.15lh;
   border-radius: 4px;

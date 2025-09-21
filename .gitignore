@@ -1,4 +1,5 @@
 .env
 debug/
 feeds.json
+feeds.txt
 __test__

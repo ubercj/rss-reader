@@ -1,3 +1,7 @@
 {
-  "include": ["**/**.js"]
+  "include": ["**/**.js"],
+  "compilerOptions": {
+    "checkJs": true,
+    "target": "esnext"
+  }
 }
