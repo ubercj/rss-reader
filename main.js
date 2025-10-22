@@ -2,8 +2,12 @@
 
 import fs from "fs";
 import { parseFeed } from "./lib/xml.js";
-import { parseFeedsFile } from "./lib/file-service.js";
-import { generateDocument } from "./lib/markup.js";
+import { parseFeedsFile, writeHtmlDocument } from "./lib/file-service.js";
+import {
+  generateDocument,
+  getFeedMarkup,
+  getIndexMarkup,
+} from "./lib/markup.js";
 
 main();
 
@@ -22,8 +26,13 @@ async function main() {
     console.log("raw feeds parsed successfully!");
 
     console.log("generating markup...");
-    const doc = generateDocument(parsedFeeds);
-    fs.writeFileSync("index.html", doc);
+    parsedFeeds.forEach((feed) => {
+      const feedContent = getFeedMarkup(feed);
+      const feedPage = generateDocument(feed.title, feedContent);
+      writeHtmlDocument(feed.title, feedPage);
+    });
+    const homepage = getIndexMarkup(parsedFeeds);
+    writeHtmlDocument("index", homepage);
     console.log("index.html generated successfully!");
   } catch (error) {
     console.error("an unexpected error occurred: ", error);

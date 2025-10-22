@@ -3,3 +3,4 @@ debug/
 feeds.json
 feeds.txt
 __test__
+dist/*.html
