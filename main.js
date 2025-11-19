@@ -49,6 +49,11 @@ async function fetchFeeds(urls) {
   const promises = urls.map((url) => fetchFeed(url));
   const responses = await Promise.allSettled(promises);
 
+  const errors = responses.filter((response) => response.status === "rejected");
+  errors.forEach((errorResponse) => {
+    console.error(errorResponse.reason);
+  });
+
   const results = responses
     .filter((response) => response.status === "fulfilled")
     .map((response) => response.value);
@@ -67,11 +72,9 @@ async function fetchFeed(url) {
     if (response.ok) {
       return await response.text();
     } else {
-      console.error("response was not ok");
-      return "";
+      throw new Error("Did not receive a successful response from " + url);
     }
   } catch (error) {
-    console.error("an error occurred: ", error);
-    return "";
+    throw new Error(`an error occurred fetching from ${url}: ${error}`);
   }
 }
