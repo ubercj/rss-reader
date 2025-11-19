@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import fs from "fs";
 import { parseFeed } from "./lib/xml.js";
 import { parseFeedsFile, writeHtmlDocument } from "./lib/file-service.js";
 import {
@@ -9,11 +8,13 @@ import {
   getIndexMarkup,
 } from "./lib/markup.js";
 
+const feedsFileName = process.argv[2] ?? "feeds.txt";
+
 main();
 
 async function main() {
   console.log("parsing feeds file...");
-  const feeds = parseFeedsFile();
+  const feeds = parseFeedsFile(feedsFileName);
   console.log("feeds file parsed successfully!");
 
   try {
