@@ -10,6 +10,7 @@ _Requires minimum node v22.7.0_
 
 - Clone this repo
 - Create a `feeds.txt` file in the root directory that includes a feed URL on each line (i.e. newline delimited)
+  - You can also pass a text file as a command line argument (e.g. `./main.js other-feeds.txt`)
 - Open your terminal at the root directory and run `./main.js`
   - You might need to adjust file permissions, e.g. `chmod u+x main.js`
   - Alternatively, run `node main.js`
